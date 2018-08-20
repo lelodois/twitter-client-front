@@ -1,0 +1,15 @@
+<div *ngIf="tops" class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+    <div class="features-icons-icon d-flex">
+        <i class="icon-social-twitter m-auto text-primary"></i>
+    </div>
+    <h3 class="text-success">
+        Top 5
+        <small>+seguidores</small>
+    </h3>
+
+    <div *ngFor="let top of tops" class="text-center">
+        <p class="lead mb-0">
+            {{top.size}} - {{top.name}}
+        </p>
+    </div>
+</div>

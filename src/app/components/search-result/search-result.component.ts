@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {EventsService} from '../../provider/service/events.service';
-import {TwitterClientService} from '../../provider/service/customer.service';
+import {Search} from '../../provider/model/search.model';
 
 @Component({
     selector: 'app-search-result',
@@ -11,16 +10,10 @@ export class SearchResultComponent {
 
     @Input()
     ativo = false;
+    search: Search;
 
-    constructor(private eventsService: EventsService,
-                private twittwerClientService: TwitterClientService) {
-    }
-
-
-    save() {
-    }
-
-    start() {
+    start(search: Search) {
+        this.search = search;
         this.ativo = true;
     }
 }

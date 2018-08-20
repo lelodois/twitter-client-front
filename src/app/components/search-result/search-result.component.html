@@ -1,8 +1,18 @@
-<div *ngIf="ativo">
+<div *ngIf="ativo && search" class="">
     <div class="panel-danger">
-        <h3 class="text-success text-center">
-            Search result
-        </h3>
+        Resultado da busca por {{search.hashtag}}
+    </div>
+
+    <div *ngFor="let tweet of search.tweets" class="card">
+        <div class="card-header">
+            {{tweet.id}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{tweet.id}}</h5>
+            <p class="card-text">
+                {{tweet.text}}
+            </p>
+        </div>
     </div>
 
     <div class="col-xs-12">

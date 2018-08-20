@@ -6,15 +6,16 @@ import {APP_ROUTERS} from './app.router';
 import {SearchComponent} from './components/home/search.component';
 import {RouterModule} from '@angular/router';
 import {EventsService} from './provider/service/events.service';
-import {TwitterClientService} from './provider/service/customer.service';
+import {TwitterClientService} from './provider/service/twitter-client.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {SearchResultComponent} from './components/search-result/search-result.component';
 import {ErrorInterceptorProvider} from './provider/service/errors.service';
 import {FormsModule} from '@angular/forms';
-import {TopFollowersComponent} from './components/top-followers/top-followers.component';
-import {TopCoutriesComponent} from './components/top-coutries/top-coutries.component';
-import {TopHoursComponent} from './components/top-hours/top-hours.component';
+import {TopFollowersComponent} from './components/top-components/top-followers/top-followers.component';
+import {TopCoutriesComponent} from './components/top-components/top-coutries/top-coutries.component';
+import {TopHoursComponent} from './components/top-components/top-hours/top-hours.component';
+import {TwitterClientTopService} from './provider/service/twitter-client-top.service';
 
 @NgModule({
     imports:
@@ -48,7 +49,8 @@ import {TopHoursComponent} from './components/top-hours/top-hours.component';
         [
             EventsService,
             TwitterClientService,
-            ErrorInterceptorProvider
+            ErrorInterceptorProvider,
+            TwitterClientTopService
         ],
     bootstrap:
         [
