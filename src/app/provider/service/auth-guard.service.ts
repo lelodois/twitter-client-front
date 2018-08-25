@@ -3,6 +3,7 @@ import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {EventsService} from './events.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,6 +14,7 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
         Observable<boolean> | Promise<boolean> | boolean {
 
+        EventsService.loadingValidAuth.emit(true);
         return this.authService.isLoggedUser();
     }
 }

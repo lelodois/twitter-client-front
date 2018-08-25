@@ -1,9 +1,16 @@
 <header class="masthead">
     <div class="overlay text-center">
+        <div *ngIf="user" class="text-white pull-right">
+            <h5>Bem vindo: <b>{{user.name.toLocaleUpperCase()}}</b></h5>
+            <a href="" (click)="logout()" class="btn-danger btn">Sair</a>
+        </div>
         <h1 class="text-warning"><b>Twitter Client</b></h1>
     </div>
     <div>
-        <app-search></app-search>
+        <app-search *ngIf="admin == true"></app-search>
+        <h4 *ngIf="admin == false" class="text-white text-justify">
+            Search no twitter disponível somente para o user admin.
+        </h4>
     </div>
 </header>
 

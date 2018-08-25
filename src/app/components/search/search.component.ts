@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {EventsService} from '../../provider/service/events.service';
 import {SearchResultComponent} from '../search-result/search-result.component';
 import {TwitterClientService} from '../../provider/service/twitter-client.service';
+import {AuthService} from '../../provider/service/auth.service';
 
 declare var $: any;
 
@@ -10,7 +11,7 @@ declare var $: any;
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit, AfterViewInit {
+export class SearchComponent implements AfterViewInit {
 
     modal = null;
 
@@ -20,10 +21,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     constructor(private rootNode: ElementRef,
                 private twitterService: TwitterClientService) {
     }
-
-    ngOnInit(): void {
-    }
-
 
     ngAfterViewInit() {
         this.modal = $(this.rootNode.nativeElement).find('#modal');

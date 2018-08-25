@@ -9,7 +9,7 @@ export class TopBaseComponent implements OnInit {
 
     ngOnInit() {
         this.loadTops();
-        EventsService.searchResult
+        EventsService.loadTops
             .subscribe(() => this.loadTops());
     }
 

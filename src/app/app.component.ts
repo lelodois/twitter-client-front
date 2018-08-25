@@ -10,10 +10,20 @@ export class AppComponent implements OnInit {
 
     title = 'app';
     errorMessage: String = undefined;
+    loading = false;
 
     ngOnInit(): void {
-        EventsService.loginEvents.subscribe(
-            message => this.errorMessage = message);
+        EventsService.loginErrorsEvents.subscribe(
+            message => {
+                this.errorMessage = message;
+                this.loading = false;
+            });
+
+        EventsService.loginSuccessEvents
+            .subscribe(() => this.loading = false);
+
+        EventsService.loadingValidAuth
+            .subscribe(() => this.loading = true);
     }
 
 }

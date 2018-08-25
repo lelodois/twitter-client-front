@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {URL_LOGIN, URL_USER} from '../url-util.service';
 import 'rxjs/add/operator/map';
@@ -36,14 +36,15 @@ export class AuthService {
                         'token',
                         result.token_type.concat(' ').concat(result.access_token)
                     );
+                    EventsService.loginSuccessEvents.emit(true);
                     return true;
                 } else {
-                    EventsService.loginEvents.emit('Login ou senha inválidos');
+                    EventsService.loginErrorsEvents.emit('Login ou senha inválidos');
                     return false;
                 }
             }).catch((err: HttpErrorResponse) => {
-                EventsService.loginEvents.emit('Login ou senha inválidos');
-                return Observable.empty<HttpEvent<any>>();
+                EventsService.loginErrorsEvents.emit('Login ou senha inválidos');
+                return Observable.of<boolean>(false);
             });
     }
 
@@ -51,9 +52,10 @@ export class AuthService {
         return this.getLoggedUser()
             .map(response => {
                     if (response && response.authenticated == true) {
+                        EventsService.loginSuccessEvents.emit(true);
                         return true;
                     } else {
-                        EventsService.loginEvents.emit('Usuário não está autenticado');
+                        EventsService.loginErrorsEvents.emit('Usuário não está autenticado');
                         this.router.navigate(['login']);
                         return false;
                     }
@@ -70,7 +72,7 @@ export class AuthService {
                 })
             }
         ).catch((err: HttpErrorResponse) => {
-            EventsService.loginEvents.emit('Usuário não está autenticado');
+            EventsService.loginErrorsEvents.emit('Usuário não está autenticado');
             this.router.navigate(['login']);
             return Observable.of<User>(new User());
         });

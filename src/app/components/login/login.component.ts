@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        EventsService.loginEvents.subscribe(
+        EventsService.loginErrorsEvents.subscribe(
             event => {
                 if (event) {
                     this.logging = false;
@@ -27,15 +27,19 @@ export class LoginComponent implements OnInit {
     }
 
     login(username: string, password: string) {
-        this.logging = true;
-        EventsService.loginEvents.emit(undefined);
+        if (username == '' || password == '') {
+            EventsService.loginErrorsEvents.emit('Informe o username e o password.');
+        } else {
+            this.logging = true;
+            EventsService.loginErrorsEvents.emit(undefined);
 
-        this.authService.login(username, password)
-            .subscribe(response => {
-                if (response == true) {
-                    this.router.navigate(['home']);
-                }
-            });
+            this.authService.login(username.trim(), password.trim())
+                .subscribe(response => {
+                    if (response == true) {
+                        this.router.navigate(['home']);
+                    }
+                });
+        }
     }
 
 }

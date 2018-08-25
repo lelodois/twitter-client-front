@@ -1,4 +1,4 @@
-<div *ngIf="tops" class="text-center features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+<div class="text-center features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
     <div class="features-icons-icon d-flex">
         <i class="icon-hourglass m-auto text-primary"></i>
     </div>
@@ -7,9 +7,11 @@
         <small>Horários</small>
     </h3>
 
-    <div *ngFor="let top of tops">
-        <p class="lead mb-0">
-            {{top.size}} - {{top.name}}
-        </p>
+    <div *ngIf="tops">
+        <div *ngFor="let top of tops">
+            <p class="lead mb-0">
+                {{top.size}} - {{top.name}}
+            </p>
+        </div>
     </div>
 </div>
