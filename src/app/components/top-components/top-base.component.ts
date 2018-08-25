@@ -7,12 +7,9 @@ export class TopBaseComponent implements OnInit {
 
     tops: Top[] = undefined;
 
-    constructor(private eventsService: EventsService) {
-    }
-
     ngOnInit() {
         this.loadTops();
-        this.eventsService.searchResult
+        EventsService.searchResult
             .subscribe(() => this.loadTops());
     }
 

@@ -1,12 +1,8 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter} from '@angular/core';
 import {Search} from '../model/search.model';
 
-@Injectable()
 export class EventsService {
 
-    private readonly _searchResult: EventEmitter<Search> = new EventEmitter<Search>(true);
-
-    get searchResult(): EventEmitter<Search> {
-        return this._searchResult;
-    }
+    static searchResult: EventEmitter<Search> = new EventEmitter<Search>(true);
+    static loginEvents: EventEmitter<String> = new EventEmitter<String>(true);
 }

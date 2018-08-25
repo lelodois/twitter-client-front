@@ -18,8 +18,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     searchResultComponent: SearchResultComponent;
 
     constructor(private rootNode: ElementRef,
-                private twitterService: TwitterClientService,
-                private eventsService: EventsService) {
+                private twitterService: TwitterClientService) {
     }
 
     ngOnInit(): void {
@@ -36,7 +35,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
                 this.searchResultComponent.start(searchResultItem);
                 this.modal.modal('show');
 
-                this.eventsService.searchResult.emit(searchResultItem);
+                EventsService.searchResult.emit(searchResultItem);
             });
     }
 

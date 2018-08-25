@@ -9,6 +9,6 @@ export const APP_ROUTERS: ModuleWithProviders =
         [
             {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
             {path: 'login', component: LoginComponent},
-            {path: '*', redirectTo: 'login'}
+            {path: '**', redirectTo: 'login'}
         ], {useHash: false}
     );

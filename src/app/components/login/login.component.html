@@ -8,11 +8,6 @@
 
             <div style="padding-top:30px" class="panel-body">
 
-                <div *ngIf="errorMessage == true"
-                     class="alert alert-danger col-sm-12">
-                    Login ou senha inválidos
-                </div>
-
                 <form class="form-horizontal"
                       role="form"
                       (keyup.enter)="login(loginUsername.value, loginPassword.value)">
@@ -35,10 +30,14 @@
 
                     <div class="form-group pull-right">
                         <div class="col-sm-12 controls">
-                            <a id="btn-login"
+                            <a *ngIf="!logging"
                                (click)="login(loginUsername.value, loginPassword.value)"
-                               class="btn btn-success text-white">
+                               class="btn text-white btn-success">
                                 Login
+                            </a>
+                            <a *ngIf="logging"
+                               class="disabled text-dark btn-default btn text-white">
+                                ...
                             </a>
                         </div>
                     </div>

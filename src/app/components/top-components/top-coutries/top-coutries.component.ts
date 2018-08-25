@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {TwitterClientTopService} from '../../../provider/service/twitter-client-top.service';
-import {EventsService} from '../../../provider/service/events.service';
 import {TopBaseComponent} from '../top-base.component';
 import {Top} from '../../../provider/model/top.model';
 import {Observable} from '../../../../../node_modules/rxjs/Rx';
@@ -12,9 +11,8 @@ import {Observable} from '../../../../../node_modules/rxjs/Rx';
 })
 export class TopCoutriesComponent extends TopBaseComponent {
 
-    constructor(private twittwerTopService: TwitterClientTopService,
-                eventsService: EventsService) {
-        super(eventsService);
+    constructor(private twittwerTopService: TwitterClientTopService) {
+        super();
     }
 
     protected getObservableTop(): Observable<Top[]> {
