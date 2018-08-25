@@ -16,7 +16,7 @@ export class TopCoutriesComponent extends TopBaseComponent {
     }
 
     protected getObservableTop(): Observable<Top[]> {
-        return this.twittwerTopService.getTopByName('countries');
+        return this.twittwerTopService.getTopByName('country');
     }
 
 }
