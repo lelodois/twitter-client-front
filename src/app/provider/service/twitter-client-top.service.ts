@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Top} from '../model/top.model';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class TwitterClientTopService {

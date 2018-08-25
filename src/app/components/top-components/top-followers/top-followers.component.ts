@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {TwitterClientTopService} from '../../../provider/service/twitter-client-top.service';
 import {EventsService} from '../../../provider/service/events.service';
 import {Top} from '../../../provider/model/top.model';
@@ -10,7 +10,7 @@ import {TopBaseComponent} from '../top-base.component';
     templateUrl: './top-followers.component.html',
     styleUrls: ['./top-followers.component.scss']
 })
-export class TopFollowersComponent extends TopBaseComponent{
+export class TopFollowersComponent extends TopBaseComponent {
 
     constructor(private twittwerTopService: TwitterClientTopService,
                 eventsService: EventsService) {
