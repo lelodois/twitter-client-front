@@ -18,6 +18,6 @@ export class TopHoursComponent extends TopBaseComponent {
     }
 
     protected getObservableTop(): Observable<Top[]> {
-        return this.twittwerTopService.getTopHours();
+        return this.twittwerTopService.getTopByName('hours');
     }
 }

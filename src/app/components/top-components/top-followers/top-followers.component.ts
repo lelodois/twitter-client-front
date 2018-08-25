@@ -18,7 +18,7 @@ export class TopFollowersComponent extends TopBaseComponent {
     }
 
     protected getObservableTop(): Observable<Top[]> {
-        return this.twittwerTopService.getTopFollowers();
+        return this.twittwerTopService.getTopByName('followers');
     }
 
 

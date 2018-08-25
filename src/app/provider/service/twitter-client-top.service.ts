@@ -1,43 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Top} from '../model/top.model';
+import {URL_TOPS} from '../url-util.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AuthService} from './auth.service';
 import 'rxjs/add/observable/of';
 
 @Injectable()
 export class TwitterClientTopService {
 
-    constructor() {
+    constructor(private http: HttpClient,
+                private authService: AuthService) {
     }
 
-    number_top_1 = 50;
-    number_top_2 = 75;
-    number_top_3 = 45;
-
-    getTopFollowers(): Observable<Top[]> {
-        const tops = [];
-        tops.push(new Top(this.number_top_1++, 'João'));
-        tops.push(new Top(this.number_top_2++, 'Maria'));
-        tops.push(new Top(this.number_top_3++, 'Ana'));
-
-        return Observable.of(tops);
+    getTopByName(topName: string): Observable<Top[]> {
+        return this.http.get<Top[]>(
+            URL_TOPS.concat(topName).concat('/'),
+            {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': this.authService.getToken()
+                })
+            }
+        );
     }
-
-    getTopCountries(): Observable<Top[]> {
-        const tops = [];
-        tops.push(new Top(this.number_top_1++, 'Brasil'));
-        tops.push(new Top(this.number_top_2++, 'Eua'));
-        tops.push(new Top(this.number_top_3++, 'Venezuela'));
-
-        return Observable.of(tops);
-    }
-
-    getTopHours(): Observable<Top[]> {
-        const tops = [];
-        tops.push(new Top(this.number_top_1++, 'as 22 horas'));
-        tops.push(new Top(this.number_top_2++, 'as 17 horas'));
-        tops.push(new Top(this.number_top_3++, 'as 13 horas'));
-
-        return Observable.of(tops);
-    }
-
 }
