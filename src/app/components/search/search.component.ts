@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {EventsService} from '../../provider/service/events.service';
 import {SearchResultComponent} from '../search-result/search-result.component';
 import {TwitterClientService} from '../../provider/service/twitter-client.service';
-import {AuthService} from '../../provider/service/auth.service';
 
 declare var $: any;
 
@@ -27,13 +26,15 @@ export class SearchComponent implements AfterViewInit {
     }
 
     search(text: string) {
-        this.twitterService.search(text)
-            .subscribe(searchResultItem => {
-                this.searchResultComponent.start(searchResultItem);
-                this.modal.modal('show');
+        if (text.trim() != '') {
+            this.twitterService.search(text)
+                .subscribe(searchResultItem => {
+                    this.searchResultComponent.start(searchResultItem);
+                    this.modal.modal('show');
 
-                EventsService.searchResult.emit(searchResultItem);
-            });
+                    EventsService.searchResult.emit(searchResultItem);
+                });
+        }
     }
 
 }

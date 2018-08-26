@@ -2,17 +2,26 @@ import {Tweet} from './tweet.model';
 
 export class Search {
 
-    private _creationDate: Date;
+    private _creationDate: any;
     private _executionDate: Date;
-    private _tweets: Tweet[] = [];
+    private _tweets: Array<Tweet> = [];
     private _id: number;
     private _hashtag: string;
+    private _twitterInfo: boolean;
 
-    get tweets(): Tweet[] {
+    get twitterInfo(): boolean {
+        return this._twitterInfo;
+    }
+
+    set twitterInfo(value: boolean) {
+        this._twitterInfo = value;
+    }
+
+    get tweets(): Array<Tweet> {
         return this._tweets;
     }
 
-    set tweets(value: Tweet[]) {
+    set tweets(value: Array<Tweet>) {
         this._tweets = value;
     }
 
@@ -32,11 +41,11 @@ export class Search {
         this._hashtag = value;
     }
 
-    get creationDate(): Date {
+    get creationDate(): any {
         return this._creationDate;
     }
 
-    set creationDate(value: Date) {
+    set creationDate(value: any) {
         this._creationDate = value;
     }
 

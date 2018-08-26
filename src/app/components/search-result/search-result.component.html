@@ -1,17 +1,46 @@
 <div *ngIf="ativo && search" class="">
-    <div class="panel-danger">
-        Resultado da busca por {{search.hashtag}}
+
+    <div class="alert alert-danger" *ngIf="!search.twitterInfo">
+        Não foi possível pesquisar no twitter :(.
+        <p>Os os tweets abaixos foram recurepados de outra pesquisa já realizada para demonstrativo</p>
+        Por favor, tente novamente.
     </div>
 
-    <div *ngFor="let tweet of search.tweets" class="card">
+    <div class="card-title success" *ngIf="search.twitterInfo">
+        <small>Sua busca pela hashtag:</small>
+        <b> {{search.hashtag}}</b>
+        <small>retornou</small>
+        <b> {{search.tweets.length}}</b>
+        <small>tweets</small>
+    </div>
+
+    <div *ngFor="let tweet of search.tweets; let idx= index" class="card" style="margin-bottom: 8px;">
         <div class="card-header">
-            {{tweet.id}}
+            <h5>
+                {{idx+1}}
+                <small> /{{search.tweets.length}} -</small>
+                Usuário: <b class="text-info">{{tweet.tweetUser.name}}</b>
+                <small>
+                    de {{tweet.tweetUser.location}} com {{tweet.tweetUser.followersCount}} seguidores
+                </small>
+            </h5>
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{tweet.id}}</h5>
+            <h5 class="card-title">
+                {{tweet.creationDate.dayOfMonth}}-{{tweet.creationDate.month}}-{{tweet.creationDate.year}}
+                as
+                {{tweet.creationDate.hour}}:{{tweet.creationDate.minute}}
+            </h5>
             <p class="card-text">
                 {{tweet.text}}
             </p>
+        </div>
+        <div class="card-footer" *ngIf="tweet.tweetUser.screnName">
+            <a href="https://twitter.com/{{tweet.tweetUser.screnName}}/status/{{tweet.stringId}}"
+               class=" btn-link"
+               target="_blank">
+                <small>https://twitter.com/{{tweet.tweetUser.screnName}}/status/{{tweet.stringId}}</small>
+            </a>
         </div>
     </div>
 
