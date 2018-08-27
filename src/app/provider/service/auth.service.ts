@@ -43,7 +43,7 @@ export class AuthService {
                     return false;
                 }
             }).catch((err: HttpErrorResponse) => {
-                EventsService.loginErrorsEvents.emit('Login ou senha inválidos');
+                EventsService.loginErrorsEvents.emit('Login ou senha inválidos, tente novamente');
                 return Observable.of<boolean>(false);
             });
     }

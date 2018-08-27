@@ -9,9 +9,10 @@
 
     <div *ngIf="tops">
         <div *ngFor="let top of tops" class="text-center">
-            <p class="lead mb-0">
-                {{top.size}} - {{top.name}}
-            </p>
+	    <strong class="text-info">{{top.name}} </strong>
+	    <small>tem </small>
+	    <strong class="text-info">{{top.size}} </strong>
+	    <small>seguidores </small>
         </div>
     </div>
 </div>
